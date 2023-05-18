@@ -67,3 +67,81 @@ export const firstFactorial = (num) => {
 };
 
 ```
+
+### Challenge 4 - firstReverse
+
+Have the function firstReverse() take the str parameter being passed
+and return the string in reversed order.
+
+```
+export const firstReverse = (str) => {
+  const arr = str.split("");
+  const reversedArr = arr.reverse();
+  const newStr = reversedArr.join("");
+  return newStr;
+};
+
+```
+
+### Challenge 5 - findIntersection
+
+Have the function findIntersection(strArr) read the array of strings stored
+in strArr which will contain 2 elements: the first element will represent a
+list of comma-separated numbers sorted in ascending order, the second element
+will represent a second list of comma-separated numbers (also sorted).
+Your goal is tı return a cınna-separated string containing the numbers
+that occur in elements of strArr in sorted order. If there is no intersection,
+return the string false.
+
+```
+export const findIntersection = (arr) => {
+  let interSection = [];
+
+  const set1 = arr[0].replace(/\s/g, "").split(",");
+  const set2 = arr[1].replace(/\s/g, "").split(",");
+
+  set2.forEach((item) => {
+    if (set1.includes(item)) {
+      interSection.push(item);
+    }
+  });
+
+  if (interSection.length != 0) {
+    return interSection.toString();
+  }
+  return false;
+};
+
+```
+
+### Challenge 6 - questionMark
+
+Have the function QuestionsMarks(str) take the str string parameter, which will contain single digit numbers, letters, and question marks, and check if there are exactly 3 question marks between every pair of two numbers that add up to 10. If so, then your program should return the string true, otherwise it should return the string false. If there aren't any two numbers that add up to 10 in the string, then your program should return false as well.
+
+For example: if str is "arrb6???4xxbl5???eee5" then your program should return true because there are exactly 3 question marks between 6 and 4, and 3 question marks between 5 and 5 at the end of the string.
+
+```
+export const questionMark = (str) => {
+  if (str.length < 5) {
+    return false;
+  }
+
+  const newStr = str.replace(/[^0-9?]/g, "");
+
+  const arr = newStr.split("");
+
+  let sums = [];
+  let sum = 0;
+  let iterator = 0;
+  arr.forEach((item) => {
+    if (item != "?") {
+      sum = parseInt(item) + parseInt(arr[iterator + 4]);
+      sums.push(sum);
+    }
+    iterator += 1;
+  });
+
+  return sums.includes(10) ? true : false;
+};
+
+```
